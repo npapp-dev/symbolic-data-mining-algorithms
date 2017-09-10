@@ -21,6 +21,8 @@ import java.util.logging.Logger;
  */
 public final class Apriori extends Algorithm {
     
+	private static Logger logger = Logger.getLogger(Apriori.class.getName());
+	
     private LinkedList<Node> itNodes = new LinkedList<Node>();
   
     private List<Node> result = new LinkedList<Node>();
@@ -44,8 +46,8 @@ public final class Apriori extends Algorithm {
             while ((sCurrentLine = br.readLine()) != null) {
                 StringTokenizer st2 = new StringTokenizer(sCurrentLine, dataDelimiter);
                 for (Node in : this.itNodes) {
-                    int szam = Integer.valueOf(st2.nextToken()).intValue();
-                    if (szam == 1) {
+                    int binaryValue = Integer.valueOf(st2.nextToken()).intValue();
+                    if (binaryValue == 1) {
                         in.getBa().add(true);
                     } else {
                         in.getBa().add(false);
@@ -87,7 +89,7 @@ public final class Apriori extends Algorithm {
     }
 
     /**
-     * It creates a list of frequent nodes.It uses the support number for selecting.
+     * It creates a list of frequent nodes.It uses the support number in order to select the candidate.
      * 
      * @param nodes from which frequent ones will be selected.
      * @return frequent nodes
@@ -121,6 +123,8 @@ public final class Apriori extends Algorithm {
                     }
                 }
                 candidate.setSupportCount(support);
+                this.setSupportCountOfNode(first);
+    //            logger.info("First support:"+candidate.getSupportCount());
                 if (support >= minSupport) {
                       boolean found = false;
                     if (result.size() > 1) {
@@ -130,6 +134,8 @@ public final class Apriori extends Algorithm {
                     if (found) {
                         break;
                     } else {
+                        candidate.setConfidence((float)candidate.getSupportCount()/(float)first.getSupportCount());
+                        candidate.setRule(candidate.getName()+" => "+first.getName());
                         newNodes.add(candidate);
                     }
                 }

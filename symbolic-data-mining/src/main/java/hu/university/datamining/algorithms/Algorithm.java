@@ -56,6 +56,16 @@ public abstract class Algorithm {
 	        }
 	    }
 	   
+	   protected void setSupportCountOfNode(Node node){
+		   int support=0;
+		   for(int i=0;i<node.getBa().size();i++){
+			   if(node.getBa().get(i).equals(true)){
+				   support++;
+			   }
+		   }
+		   node.setSupportCount(support);
+	   }
+	   
 	    protected void count(List<Node> nodes) {
 	        int support;
 	        for (Node it : nodes) {

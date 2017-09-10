@@ -86,13 +86,14 @@ public class AprioriTest {
      @Test
      public void test() {
     	 List<Node> result = (LinkedList<Node>) AlgorithmFactory.getInstance().getAlgorithm(AlgorithmFactory.Algorithms.Apriori).execute("src/test/resources/test.txt", ",", ",", 3);
-         assertEquals(resultList,result);
-         
+    	 assertEquals(resultList,result);
+        
          List<Node> result2 = (LinkedList<Node>) AlgorithmFactory.getInstance().getAlgorithm(AlgorithmFactory.Algorithms.Apriori).execute("src/test/resources/test2.txt", "|", ",", 4);
          assertEquals(resultList2,result2);
-
+         
          List<Node> result3 = (LinkedList<Node>) AlgorithmFactory.getInstance().getAlgorithm(AlgorithmFactory.Algorithms.Apriori).execute("src/test/resources/test3.txt", "|", ",", 3);
          assertEquals(resultList3,result3);
 
+         List<Node> result4 = (LinkedList<Node>) AlgorithmFactory.getInstance().getAlgorithm(AlgorithmFactory.Algorithms.Apriori).execute("src/test/resources/data.txt", " ", ",", 5);
      }
 }

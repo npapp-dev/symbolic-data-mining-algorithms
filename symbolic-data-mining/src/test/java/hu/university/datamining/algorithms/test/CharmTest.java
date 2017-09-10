@@ -77,5 +77,10 @@ public class CharmTest {
 
         List<Node> result2 = AlgorithmFactory.getInstance().getAlgorithm(Algorithms.Charm).execute("src/test/resources/test4.txt", "|", " ", 3);
         assertTrue(resultList2.containsAll(result2) && resultList2.size()==result2.size());
+        
+        List<Node> result3 = AlgorithmFactory.getInstance().getAlgorithm(Algorithms.Charm).execute("src/test/resources/data.txt", " ", ",", 5);
+		for(Node node : result3){
+       	 System.out.println("Node name:"+node.getName()+" support count:"+node.getSupportCount()+" confidence: "+(int)(node.getConfidence(2)*100)+"%"+" "+node.getRule());
+       }
     }
 }

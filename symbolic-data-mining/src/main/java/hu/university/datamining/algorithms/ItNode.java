@@ -17,7 +17,6 @@ public final class ItNode extends Node{
 
     List<ItNode> children=new LinkedList<ItNode>();
     ItNode parent;
-    int supportCount;
     
     public ItNode(){
     }

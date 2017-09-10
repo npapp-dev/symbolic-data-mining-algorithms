@@ -21,10 +21,10 @@ import java.util.logging.Logger;
  */
 public final class Charm extends Algorithm {
 
-
+	private static Logger logger = Logger.getLogger(Charm.class.getName());
     private int minSupport;
     private MyHashMap hashItNodes;
-   private int numberOfExtractedItems;
+    private int numberOfExtractedItems;
 
     //Map<String, Integer> result = new HashMap<>();
     private List<ItNode> result = new LinkedList<ItNode>();
@@ -170,8 +170,6 @@ public final class Charm extends Algorithm {
         itnodes.remove(index);
     }
 
-
-
     void save(ItNode curr) {
         if (hashItNodes.addElement(curr)) {
         	result.add(curr);
@@ -206,6 +204,8 @@ public final class Charm extends Algorithm {
                 ItNode candidate = getCandidate(curr, other);
                 //New candidate was found.
                 if(candidate!=null){
+                	candidate.setConfidence((float)candidate.getSupportCount()/(float)curr.getSupportCount());
+                	candidate.setRule(curr.name+" => "+candidate.name);
                 	curr.addChild(candidate);
                 }
             }

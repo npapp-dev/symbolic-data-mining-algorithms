@@ -43,8 +43,8 @@ public final class Eclat extends Algorithm {
 			//	System.out.println(st2.countTokens());
 				for(ItNode in : this.itNodes)
 				{
-					int szam=Integer.valueOf(st2.nextToken()).intValue();
-					if(szam==1)
+					int nextValue=Integer.valueOf(st2.nextToken()).intValue();
+					if(nextValue==1)
 						in.getBa().add(true);
 					else
 						in.getBa().add(false);
@@ -84,13 +84,13 @@ public final class Eclat extends Algorithm {
 		{
 		        if(children.size()>0)
 		        {
-		        ItNode first=children.peekFirst();
-		        children.remove();
-		        return first;
+			        ItNode first=children.peekFirst();
+			        children.remove();
+			        return first;
 		        }
 		        else
 		        {
-		        return null;
+		        	return null;
 		        }
 		}
 		}
@@ -149,9 +149,11 @@ public final class Eclat extends Algorithm {
 				newItNode.getBa().add(false);
 		}
 		newItNode=supportCount(newItNode);
+		newItNode.setConfidence((float)newItNode.getSupportCount()/(float)curr.getSupportCount());
+		newItNode.setRule(curr.name+" => "+newItNode.name);
 		if(newItNode.getSupportCount()>=minSupport)
 		{
-		return newItNode;
+			return newItNode;
 		}
 		else
 			return null;

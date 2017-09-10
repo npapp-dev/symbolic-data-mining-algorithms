@@ -90,5 +90,10 @@ public class EclatTest {
 
 		List<Node> result3 = (LinkedList<Node>) AlgorithmFactory.getInstance().getAlgorithm(Algorithms.Eclat).execute("src/test/resources/test3.txt", "|", ",", 3);
 		assertTrue(resultList3.containsAll(result3) && resultList3.size()==result3.size());
+		
+		List<Node> result4 = (LinkedList<Node>) AlgorithmFactory.getInstance().getAlgorithm(Algorithms.Eclat).execute("src/test/resources/data.txt", " ", ",", 5);
+		for(Node node : result4){
+        	 System.out.println("Node name:"+node.getName()+" support count:"+node.getSupportCount()+" confidence: "+(int)(node.getConfidence(2)*100)+"%");
+        }
 	}
 }
