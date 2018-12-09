@@ -29,7 +29,7 @@ public final class AlgorithmFactory {
 		Charm,
 	}
 	
-	private static AlgorithmFactory instance;
+	private static volatile AlgorithmFactory instance;
 	
 	private AlgorithmFactory(){}
 	
@@ -40,8 +40,10 @@ public final class AlgorithmFactory {
 	 */
 	public static AlgorithmFactory getInstance(){
 			if(instance==null){
-				instance = new AlgorithmFactory();
-				return instance;
+				synchronized(AlgorithmFactory.class) {
+					instance = new AlgorithmFactory();
+					return instance;
+				}
 			}
 			else {
 				return instance;
